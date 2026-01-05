@@ -13,23 +13,27 @@ def boost():
     key = request.args.get('key')
     gid = request.args.get('gid')
     
-    url = "https://freefire.api.garena.com/api/guild/glory_boost"
+    # এটি হলো সঠিক এবং আপডেট করা গ্যারেনা লিঙ্ক
+    url = "https://ff-api.garena.com/api/guild/glory_boost"
+    
     headers = {
         "x-ga-uid": uid, 
         "x-ga-token": key, 
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "User-Agent": "Dalvik/2.1.0 (Linux; U; Android 12;)"
     }
-    payload = {"guild_id": gid, "action": "start_game"}
+    
+    payload = {"guild_id": gid}
     
     try:
-        response = requests.post(url, json=payload, headers=headers, timeout=10)
+        response = requests.post(url, json=payload, headers=headers, timeout=15)
         return jsonify({
             "status": response.status_code,
-            "message": "Request Processed",
-            "server_response": response.text
-        })
+            "server_response": response.json() if response.status_code == 200 else response.text
+        }), response.status_code
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run()
+                                 
