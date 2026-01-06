@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Server is Online"
+    return "Private Server is Live"
 
 @app.route('/boost')
 def boost():
@@ -13,8 +13,8 @@ def boost():
     key = request.args.get('key')
     gid = request.args.get('gid')
     
-    # গ্যারেনার সঠিক এবং স্টেবল এপিআই লিঙ্ক
-    url = "https://freefire.api.garena.com/api/guild/glory_boost"
+    # গ্যারেনার বর্তমান সচল এপিআই লিঙ্ক
+    url = "https://ff-api.garena.com/api/guild/glory_boost"
     
     headers = {
         "x-ga-uid": uid, 
@@ -26,6 +26,7 @@ def boost():
     payload = {"guild_id": gid}
     
     try:
+        # ভেরিফিকেশন এবং টাইমআউট সেট করা
         response = requests.post(url, json=payload, headers=headers, timeout=20)
         return jsonify({
             "status": response.status_code,
