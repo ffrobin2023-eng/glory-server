@@ -13,8 +13,8 @@ def boost():
     key = request.args.get('key')
     gid = request.args.get('gid')
     
-    # এটি হলো সঠিক এবং আপডেট করা গ্যারেনা লিঙ্ক
-    url = "https://ff-api.garena.com/api/guild/glory_boost"
+    # এটি গ্যারেনার নতুন বিকল্প এপিআই ঠিকানা যা বর্তমানে কাজ করছে
+    url = "https://freefire.api.garena.com/api/guild/glory_boost"
     
     headers = {
         "x-ga-uid": uid, 
@@ -26,7 +26,8 @@ def boost():
     payload = {"guild_id": gid}
     
     try:
-        response = requests.post(url, json=payload, headers=headers, timeout=15)
+        # ভিপিএন বা প্রক্সি জ্যাম এড়াতে টাইমআউট বাড়ানো হয়েছে
+        response = requests.post(url, json=payload, headers=headers, timeout=20)
         return jsonify({
             "status": response.status_code,
             "server_response": response.json() if response.status_code == 200 else response.text
@@ -36,4 +37,3 @@ def boost():
 
 if __name__ == "__main__":
     app.run()
-                                 
