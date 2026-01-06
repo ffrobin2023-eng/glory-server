@@ -13,8 +13,9 @@ def boost():
     key = request.args.get('key')
     gid = request.args.get('gid')
     
-    # এটি গ্যারেনার নতুন বিকল্প এপিআই ঠিকানা যা বর্তমানে কাজ করছে
-    url = "https://freefire.api.garena.com/api/guild/glory_boost"
+    # এটিই হলো সঠিক লিঙ্ক যা আপনার কোডের ভেতরে থাকবে
+url = "https://freefire.api.garena.com/api/guild/glory_boost"
+"
     
     headers = {
         "x-ga-uid": uid, 
