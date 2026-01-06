@@ -17,7 +17,7 @@ def boost():
     # একাধিক ডোমেইন ট্রাই করার সিস্টেম
     urls = [
         "https://ff-api.garena.com/api/guild/glory_boost",
-        "https://freefire.api.garena.com/api/guild/glory_boost"
+        "https://ff-api.garena.com/api/guild/glory_boost
     ]
     
     headers = {
