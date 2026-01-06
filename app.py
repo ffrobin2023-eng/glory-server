@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Private Server is Live"
+    return "Server is Online"
 
 @app.route('/boost')
 def boost():
@@ -13,9 +13,8 @@ def boost():
     key = request.args.get('key')
     gid = request.args.get('gid')
     
-    # এটিই হলো সঠিক লিঙ্ক যা আপনার কোডের ভেতরে থাকবে
-url = "https://freefire.api.garena.com/api/guild/glory_boost"
-"
+    # গ্যারেনার সঠিক এবং স্টেবল এপিআই লিঙ্ক
+    url = "https://freefire.api.garena.com/api/guild/glory_boost"
     
     headers = {
         "x-ga-uid": uid, 
@@ -27,7 +26,6 @@ url = "https://freefire.api.garena.com/api/guild/glory_boost"
     payload = {"guild_id": gid}
     
     try:
-        # ভিপিএন বা প্রক্সি জ্যাম এড়াতে টাইমআউট বাড়ানো হয়েছে
         response = requests.post(url, json=payload, headers=headers, timeout=20)
         return jsonify({
             "status": response.status_code,
